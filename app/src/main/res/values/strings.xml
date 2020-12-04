@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Dhammapada</string>
+    <string name="app_en_name">DHAMMAPADA</string>
+    <string name="app_mm_name">ဓမ္မပဒ</string>
+    <string name="app_subtitle">A Practical Guide to Right Living</string>
+    <string name="english">EN</string>
+    <string name="myanmar">မြန်မာ</string>
+    <string name="pali">ပါဠိ</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

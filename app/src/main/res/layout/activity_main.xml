@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.MainActivity"
+    android:background="@color/colorBackground">
+
+    <ImageButton
+        android:id="@+id/imgbtnInfo"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@android:drawable/ic_menu_info_details"
+        android:background="@android:color/transparent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
+        />
+
+    <ImageView
+        android:id="@+id/imgTitle"
+        android:layout_width="33dp"
+        android:layout_height="33dp"
+        android:scaleType="fitCenter"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@mipmap/logo"
+        android:layout_margin="10dp"
+        />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcyList"
+        android:layout_below="@id/imgTitle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:layout_marginBottom="60dp"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true">
+
+    <RelativeLayout
+        android:id="@+id/rlLangLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+       android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        >
+        <Button
+            android:id="@+id/btnLangEn"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="@string/english"
+            android:fontFamily="@font/impact"
+            android:textSize="11sp"
+            android:background="@drawable/rounded_button"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="5dp"
+            />
+
+        <Button
+            android:id="@+id/btnLangMM"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="@string/myanmar"
+            android:textSize="12sp"
+            android:background="@drawable/rounded_button"
+            android:layout_toEndOf="@id/btnLangEn"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="5dp"
+            />
+
+        <Button
+            android:id="@+id/btnLangPali"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="@string/pali"
+            android:textSize="12sp"
+            android:background="@drawable/rounded_button"
+            android:layout_toEndOf="@id/btnLangMM"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="5dp"
+            />
+
+        <Button
+            android:id="@+id/btnLangPaliRoman"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:text="Pāḷi"
+            android:textSize="12sp"
+            android:background="@drawable/rounded_button"
+            android:layout_toEndOf="@id/btnLangPali"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="5dp"
+
+            />
+
+
+    </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="10dp"
+            >
+
+            <ImageButton
+                android:id="@+id/imgbtnFav"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_button"
+                />
+
+            <info.androidhive.fontawesome.FontTextView
+                android:id="@+id/ftvFav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fa_star_solid"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:layout_centerInParent="true"
+                app:solid_icon="true"
+                />
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
