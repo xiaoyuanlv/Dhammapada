@@ -2,15 +2,6 @@
 
 This is the android app 📱.
 
-Info about the eight known planets of the Solar System and interesting facts :
+The Dhammapada is a collection of sayings of the Buddha in verse form and one of the most widely read and best known Buddhist scriptures. With ( English, Myanmar, Burmese: ပါဠိ Pāli ) 
 
-The terrestrial planets
-Mercury, Venus, Earth, and Mars
-
-The giant planets
-Jupiter and Saturn (gas giants)
-
-Uranus and Neptune (ice giants)
-
-Download on google play store
-https://play.google.com/store/apps/details?id=com.senlasy.planetz
+https://play.google.com/store/apps/details?id=com.senlasy.dhammapada
