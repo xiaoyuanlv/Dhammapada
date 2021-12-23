@@ -1,7 +1,6 @@
 package com.senlasy.dhammapada.adapter
 
 import android.content.Context
-import android.graphics.Color
 import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
@@ -11,14 +10,13 @@ import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.senlasy.dhammapada.R
 import com.senlasy.dhammapada.model.Dhamma
-import info.androidhive.fontawesome.FontTextView
-
 
 class ItemAdapter(
-    var ItemList: MutableList<Dhamma>,
+    private var ItemList: MutableList<Dhamma>,
     private var rowLayout: Int,
     private val context: Context,
     recyclerView: RecyclerView
@@ -28,14 +26,13 @@ class ItemAdapter(
 
     // for load more
     private val VIEW_TYPE_ITEM = 0
-
     private var is_mm_visible = true
     private var is_en_visible = true
     private var is_pali_visible = true
 
 
     override fun getItemCount(): Int {
-        if (ItemList.isEmpty()) return 0 else return ItemList.size
+        return if (ItemList.isEmpty()) 0 else ItemList.size
     }
 
     public interface OnItemClickListener {
@@ -114,7 +111,7 @@ class ItemAdapter(
         internal var txtTitle: TextView
         internal var cardDhamma : CardView
         internal var imgbtnFav : ImageButton
-        internal var ftvFav : FontTextView
+        internal var ftvFav : TextView
 
 
         init {
@@ -140,7 +137,7 @@ class ItemAdapter(
             }
         }
 
-        fun setData(item: Dhamma, context: Context, is_en_visible : Boolean, is_mm_visible : Boolean, is_pali_visible : Boolean){
+        private fun setData(item: Dhamma, context: Context, is_en_visible : Boolean, is_mm_visible : Boolean, is_pali_visible : Boolean){
 
             if(item.fav == 1){
                 ftvFav.setTextColor(context.resources.getColor(R.color.colorAccent,null))
@@ -149,13 +146,13 @@ class ItemAdapter(
             }
 
             if(is_en_visible){
-                txtTitle.text = item.message
+                txtTitle.text = HtmlCompat.fromHtml(item.message!!, HtmlCompat.FROM_HTML_MODE_COMPACT)
             } else if(is_mm_visible){
-                txtTitle.text = item.mm_message
+                txtTitle.text = HtmlCompat.fromHtml(item.mm_message!!, HtmlCompat.FROM_HTML_MODE_COMPACT)
             } else if(is_pali_visible){
-                txtTitle.text = item.pali_message
+                txtTitle.text = HtmlCompat.fromHtml(item.pali_message!!, HtmlCompat.FROM_HTML_MODE_COMPACT)
             } else {
-                txtTitle.text = item.message
+                txtTitle.text = HtmlCompat.fromHtml(item.message!!, HtmlCompat.FROM_HTML_MODE_COMPACT)
             }
         }
 

@@ -8,35 +8,32 @@
     android:background="@android:color/transparent"
     android:padding="10dp">
 
-
-
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:cardBackgroundColor="@android:color/transparent"
             app:cardElevation="0dp"
-            android:elevation="0dp"
-
-            >
+            android:elevation="0dp" >
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-
-                >
+                android:background="@android:color/transparent">
 
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardDhamma"
+                    style="@style/CustomCard"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    app:cardBackgroundColor="@android:color/white"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
                     android:elevation="10dp"
-                    app:cardElevation="10dp"
                     app:cardCornerRadius="10dp"
-                    android:layout_centerInParent="true">
+                    app:cardElevation="10dp">
 
                     <RelativeLayout
                         android:id="@+id/rlDhamma"
@@ -46,23 +43,21 @@
                         android:background="@android:color/transparent"
                         android:padding="10dp">
 
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/txtTitle"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:fontFamily="@font/roboto"
-                            android:textSize="20sp"
-                            android:text="...A"
-                            android:lineSpacingExtra="12sp"
                             android:layout_centerInParent="true"
-                            android:scrollbars="vertical"
-                            android:textColor="@android:color/black"
+                            android:fontFamily="@font/mm3"
+                            android:gravity="center"
+                            android:lineSpacingExtra="11sp"
+                            android:paddingStart="5dp"
                             android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:paddingLeft="5dp"
                             android:paddingEnd="5dp"
-                            />
+                            android:paddingBottom="10dp"
+                            android:scrollbars="vertical"
+                            android:text="...A"
+                            android:textSize="20sp" />
 
                     </RelativeLayout>
 
@@ -70,9 +65,6 @@
 
 
             </RelativeLayout>
-
-
-
 
             <RelativeLayout
                 android:layout_width="40dp"
@@ -86,15 +78,15 @@
                     android:background="@drawable/rounded_button"
                     />
 
-                <info.androidhive.fontawesome.FontTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/ftvFav"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/fa_star_solid"
+                    android:text="@string/bookmark_font"
+                    android:fontFamily="@font/fasolid"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
                     android:layout_centerInParent="true"
-                    app:solid_icon="true"
                     />
 
             </RelativeLayout>
@@ -108,7 +100,7 @@
                 android:background="@drawable/rounded_white_button"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
-
+                android:textColor="@android:color/black"
                 />
 
 

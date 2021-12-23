@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/imgLogo"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
@@ -29,7 +29,7 @@
                 android:layout_margin="10dp"
                 />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txtTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -39,6 +39,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_margin="5dp"
+                android:textColor="@android:color/black"
                 />
 
 
@@ -52,7 +53,7 @@
                 android:layout_marginTop="10dp"
                 >
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:padding="20dp"
@@ -60,6 +61,7 @@
                     android:textAlignment="center"
                     android:layout_gravity="center"
                     android:lineSpacingExtra="10dp"
+                    android:textColor="@android:color/black"
                     android:text="The Dhammapada is a collection of sayings of the Buddha in verse form and one of the most widely read and best known Buddhist scriptures. The Dhammapada App With Pāḷi, English, Myanmar, Burmese: ပါဠိ Language"
                     />
 
@@ -75,7 +77,7 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:fontFamily="@font/impact"
-                        android:text="V 1.2"
+                        android:text="V 2.0"
                         android:textSize="17sp"
                         android:textColor="@android:color/black"
                         android:textAlignment="center"
@@ -89,7 +91,7 @@
 
 
 
-            <LinearLayout
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -116,7 +118,7 @@
 
                 </LinearLayout>
 
-            </LinearLayout>
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </RelativeLayout>
     </LinearLayout>

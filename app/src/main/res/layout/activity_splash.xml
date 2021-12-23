@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.SplashActivity"
-    android:background="@color/colorBackground"
-    >
+   >
 
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgLogo"
         android:layout_width="77dp"
         android:layout_height="77dp"
@@ -37,13 +36,12 @@
         android:id="@+id/twMMTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/impact"
-        android:textSize="20sp"
         android:layout_below="@id/twTitle"
-        android:textColor="@android:color/white"
         android:layout_centerHorizontal="true"
+        android:fontFamily="@font/mm3"
         android:text="@string/app_mm_name"
-        />
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
 
     <com.senlasy.dhammapada.utility.Typewriter
         android:id="@+id/twSubTitle"

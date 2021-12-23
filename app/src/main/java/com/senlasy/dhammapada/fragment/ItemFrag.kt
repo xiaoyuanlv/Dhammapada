@@ -1,7 +1,6 @@
 package com.senlasy.dhammapada.fragment
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import androidx.fragment.app.Fragment
@@ -13,10 +12,10 @@ import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.text.HtmlCompat
 
 import com.senlasy.dhammapada.R
 import com.senlasy.dhammapada.model.Dhamma
-import info.androidhive.fontawesome.FontTextView
 
 private const val ARG_ITEM = "dhamma"
 private const val ARG_EN_LANG = "EN_LANG"
@@ -28,12 +27,12 @@ class ItemFrag : Fragment() {
     private var dhamma: Dhamma? = null
     private var listener: OnFragmentInteractionListener? = null
 
-    lateinit var rlDhamma: RelativeLayout
-    lateinit var txtTitle: TextView
-    lateinit var cardDhamma : CardView
-    lateinit var imgbtnFav : ImageButton
-    lateinit var ftvFav : FontTextView
-    lateinit var btnNum : Button
+    private lateinit var rlDhamma: RelativeLayout
+    private lateinit var txtTitle: TextView
+    private lateinit var cardDhamma : CardView
+    private lateinit var imgbtnFav : ImageButton
+    private lateinit var ftvFav : TextView
+    private lateinit var btnNum : Button
 
     private var is_mm_visible = true
     private var is_en_visible = true
@@ -56,7 +55,7 @@ class ItemFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        var v = inflater.inflate(R.layout.fragment_item, container, false)
+        val v = inflater.inflate(R.layout.fragment_item, container, false)
 
         cardDhamma = v.findViewById(R.id.cardDhamma)
         rlDhamma = v.findViewById(R.id.rlDhamma)
@@ -67,21 +66,21 @@ class ItemFrag : Fragment() {
         btnNum = v.findViewById(R.id.btnNum)
 
         if(dhamma!!.fav == 1){
-            ftvFav.setTextColor(activity!!.resources.getColor(R.color.colorAccent,null))
+            ftvFav.setTextColor(requireActivity().resources.getColor(R.color.colorAccent,null))
         } else {
-            ftvFav.setTextColor(activity!!.resources.getColor(android.R.color.white,null))
+            ftvFav.setTextColor(requireActivity().resources.getColor(android.R.color.white,null))
         }
 
         if(is_en_visible){
-            txtTitle.text = dhamma!!.message
+            txtTitle.text =  HtmlCompat.fromHtml(dhamma!!.message!!, HtmlCompat.FROM_HTML_MODE_COMPACT)
         } else if(is_mm_visible){
-            txtTitle.text = dhamma!!.mm_message
+            txtTitle.text =  HtmlCompat.fromHtml(dhamma!!.mm_message!!, HtmlCompat.FROM_HTML_MODE_COMPACT)
         } else if(is_pali_visible){
-            txtTitle.text = dhamma!!.pali_message
+            txtTitle.text =  HtmlCompat.fromHtml(dhamma!!.pali_message!!, HtmlCompat.FROM_HTML_MODE_COMPACT)
         } else if(is_pali_roman_visible) {
-            txtTitle.text = dhamma!!.paliroman
+            txtTitle.text =  HtmlCompat.fromHtml(dhamma!!.paliroman!!, HtmlCompat.FROM_HTML_MODE_COMPACT)
         } else {
-            txtTitle.text = dhamma!!.message
+            txtTitle.text =  HtmlCompat.fromHtml(dhamma!!.message!!, HtmlCompat.FROM_HTML_MODE_COMPACT)
         }
 
         btnNum.text = dhamma!!.id.toString()
@@ -98,7 +97,7 @@ class ItemFrag : Fragment() {
         if (context is OnFragmentInteractionListener) {
             listener = context
         } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
+            throw RuntimeException("$context must implement OnFragmentInteractionListener")
         }
     }
 
@@ -109,7 +108,7 @@ class ItemFrag : Fragment() {
 
 
     interface OnFragmentInteractionListener {
-        fun onFavBtnClick(item: Dhamma, view : FontTextView)
+        fun onFavBtnClick(item: Dhamma, view : TextView)
     }
 
     companion object {

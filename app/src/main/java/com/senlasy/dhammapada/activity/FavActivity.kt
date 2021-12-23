@@ -4,36 +4,27 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.View
 import android.widget.*
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.core.widget.TextViewCompat
 import androidx.viewpager.widget.ViewPager
 import com.senlasy.dhammapada.R
-import com.senlasy.dhammapada.adapter.ItemAdapter
 import com.senlasy.dhammapada.adapter.ItemPagerAdapter
 import com.senlasy.dhammapada.database.DBHelper
 import com.senlasy.dhammapada.fragment.ItemFrag
 import com.senlasy.dhammapada.model.Dhamma
-import info.androidhive.fontawesome.FontTextView
 
 class FavActivity : AppCompatActivity(),  ItemFrag.OnFragmentInteractionListener {
 
-    lateinit var imgbtnLayout : ImageButton
-    lateinit var ftvLayout : FontTextView
-    lateinit var imgbtnMain : ImageButton
-    lateinit var txtEmpty : TextView
-    lateinit var vpgList : ViewPager
+    private lateinit var imgbtnLayout : ImageButton
+    private lateinit var imgbtnMain : ImageButton
+    private lateinit var txtEmpty : TextView
+    private lateinit var vpgList : ViewPager
 
-    var lstItem : List<Dhamma> = ArrayList()
-    var isList = true
+    private var lstItem : List<Dhamma> = ArrayList()
+    private var isList = true
 
-//    lateinit var rcyList : RecyclerView
-//    var adapter  : ItemAdapter? = null
-
-    var adapter : ItemPagerAdapter? = null
+    private var adapter : ItemPagerAdapter? = null
 
     lateinit var btnLangEn : Button
     lateinit var btnLangMM : Button
@@ -52,12 +43,9 @@ class FavActivity : AppCompatActivity(),  ItemFrag.OnFragmentInteractionListener
         setContentView(R.layout.activity_fav)
 
         imgbtnLayout = findViewById(R.id.imgbtnLayout)
-        ftvLayout = findViewById(R.id.ftvLayout)
         rlLangLayout = findViewById(R.id.rlLangLayout)
-//        rcyList = findViewById(R.id.rcyList)
         imgbtnMain = findViewById(R.id.imgbtnMain)
         txtEmpty = findViewById(R.id.txtEmpty)
-
         vpgList = findViewById(R.id.vpgList)
 
         imgbtnMain.setOnClickListener {
@@ -182,21 +170,7 @@ class FavActivity : AppCompatActivity(),  ItemFrag.OnFragmentInteractionListener
 
 
 
-    fun setUI(){
-
-//        if(isList){
-//            rcyList.layoutManager = LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
-//            ftvLayout.text = getString(R.string.fa_square_full_solid)
-//            adapter = ItemAdapter(lstItem.toMutableList(), R.layout.item_list, this, rcyList)
-//            adapter!!.setOnItemListener(this)
-//            rcyList.adapter = adapter
-//        } else {
-//            rcyList.layoutManager = GridLayoutManager(this, 1, RecyclerView.HORIZONTAL, false)
-//            ftvLayout.text = getString(R.string.fa_list_ul_solid)
-//            adapter = ItemAdapter(lstItem.toMutableList(), R.layout.item_card, this, rcyList)
-//            adapter!!.setOnItemListener(this)
-//            rcyList.adapter = adapter
-//        }
+    private fun setUI(){
 
         adapter = ItemPagerAdapter(lstItem.toMutableList(), supportFragmentManager, this)
         vpgList.adapter = adapter
@@ -215,8 +189,8 @@ class FavActivity : AppCompatActivity(),  ItemFrag.OnFragmentInteractionListener
     }
 
 
-    fun getData(){
-        var dbHelper = DBHelper(this)
+    private fun getData(){
+        val dbHelper = DBHelper(this)
         lstItem = dbHelper.getFavList()
         setUI()
     }
@@ -226,7 +200,8 @@ class FavActivity : AppCompatActivity(),  ItemFrag.OnFragmentInteractionListener
         startActivity(Intent(this, MainActivity::class.java))
     }
 
-    override fun onFavBtnClick(item: Dhamma, view: FontTextView) {
+
+    override fun onFavBtnClick(item: Dhamma, view: TextView) {
         val dbHelper = DBHelper(this)
         if(item.fav == 0){
             item.fav = 1
@@ -245,34 +220,6 @@ class FavActivity : AppCompatActivity(),  ItemFrag.OnFragmentInteractionListener
             rlLangLayout.visibility = View.VISIBLE
         }
     }
-
-//
-//    override fun onItemClick(item: Dhamma, view: View) {
-//        Handler().postDelayed(Runnable {
-//            view.setBackgroundColor(resources.getColor(android.R.color.white, null))
-//        }, 1000)
-//        Toast.makeText(this, item.message, Toast.LENGTH_SHORT).show()
-//    }
-
-//    override fun onFavBtnClick(item: Dhamma, view: View) {
-//
-//        val dbHelper = DBHelper(this)
-//        if(item.fav == 0){
-//            item.fav = 1
-//        } else {
-//            item.fav = 0
-//        }
-//        dbHelper.saveFav(item.id, item.fav)
-//        adapter!!.remove(item)
-//        adapter!!.notifyDataSetChanged()
-//
-//        if(adapter!!.ItemList.size == 0){
-//            txtEmpty.visibility = View.VISIBLE
-//        } else {
-//            txtEmpty.visibility = View.GONE
-//        }
-//    }
-
 
 
 }

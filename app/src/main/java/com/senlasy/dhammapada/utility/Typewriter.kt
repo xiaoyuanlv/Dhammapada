@@ -6,7 +6,8 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.TextView
 
-class Typewriter(context: Context?, attrs: AttributeSet?) : TextView(context, attrs) {
+class Typewriter(context: Context?, attrs: AttributeSet?) : androidx.appcompat.widget.AppCompatTextView(
+    context!!, attrs) {
     private var mText: CharSequence? = null
     private var mIndex: Int = 0
     private var mDelay: Long = 150 //Default 150ms delay

@@ -4,56 +4,45 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.PersistableBundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.senlasy.dhammapada.R
-import com.senlasy.dhammapada.adapter.CategoryAdapter
-import com.senlasy.dhammapada.adapter.ItemAdapter
 import com.senlasy.dhammapada.adapter.ItemPagerAdapter
 import com.senlasy.dhammapada.database.DBHelper
 import com.senlasy.dhammapada.fragment.ItemFrag
 import com.senlasy.dhammapada.model.Category
 import com.senlasy.dhammapada.model.Dhamma
-import info.androidhive.fontawesome.FontTextView
-import org.w3c.dom.Text
+
 
 class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener{
 
-
-    lateinit var imgbtnLayout : ImageButton
-    lateinit var ftvLayout : FontTextView
-//    lateinit var rcyList : RecyclerView
-    lateinit var vpgList : ViewPager
+    private lateinit var imgbtnLayout : ImageButton
+    private lateinit var ftvLayout : View
+    private lateinit var vpgList : ViewPager
     lateinit var imgbtnFav  : ImageButton
-    lateinit var txtMenuTitle : TextView
-    lateinit var txtMark : TextView
-    var lstItem : List<Dhamma> = ArrayList()
-//    var adapter  : ItemAdapter? = null
-    var adapter : ItemPagerAdapter? = null
+    private lateinit var txtMenuTitle : TextView
+    private lateinit var txtMark : TextView
+    private var lstItem : List<Dhamma> = ArrayList()
 
-    var categoryid : Int = 0
-    var isList = false
-    var category : Category? = null
+    private var adapter : ItemPagerAdapter? = null
 
-    lateinit var btnLangEn : Button
-    lateinit var btnLangMM : Button
-    lateinit var btnLangPali : Button
-    lateinit var btnLangPaliRoman : Button
+    private var categoryID : Int = 0
+    private var isList = false
+    private var category : Category? = null
 
-    var is_en = true
-    var is_mm = false
-    var is_pali = false
-    var is_paliroman = false
+    private lateinit var btnLangEn : Button
+    private lateinit var btnLangMM : Button
+    private lateinit var btnLangPali : Button
+    private lateinit var btnLangPaliRoman : Button
+
+    private var is_en = true
+    private var is_mm = false
+    private var is_pali = false
+    private var is_paliroman = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,11 +50,9 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
 
         imgbtnLayout = findViewById(R.id.imgbtnLayout)
         ftvLayout = findViewById(R.id.ftvLayout)
-//        rcyList = findViewById(R.id.rcyList)
         vpgList = findViewById(R.id.vpgList)
         imgbtnFav = findViewById(R.id.imgbtnFav)
         txtMenuTitle = findViewById(R.id.txtMenuTitle)
-
         txtMark = findViewById(R.id.txtMark)
 
         findViewById<ImageButton>(R.id.imgbtnBack).setOnClickListener {
@@ -141,7 +128,7 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
 
     }
 
-    fun setButtonLang(en_lang : Boolean, mm_lang : Boolean, pali_lang : Boolean, pali_roman : Boolean){
+    private fun setButtonLang(en_lang : Boolean, mm_lang : Boolean, pali_lang : Boolean, pali_roman : Boolean){
 
         if(adapter != null){
             adapter!!.setLangVisibility(en_lang, mm_lang, pali_lang, pali_roman)
@@ -196,24 +183,7 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
 
     }
 
-    fun setUI(){
-
-//        if(isList){
-//            rcyList.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-//            ftvLayout.text = getString(R.string.fa_square_full_solid)
-//            adapter = ItemAdapter(lstItem.toMutableList(), R.layout.item_list, this, rcyList)
-//            adapter!!.setOnItemListener(this)
-//            rcyList.adapter = adapter
-//        } else {
-//            rcyList.layoutManager = GridLayoutManager(this, 1, RecyclerView.HORIZONTAL, false)
-//            ftvLayout.text = getString(R.string.fa_list_ul_solid)
-//            adapter = ItemAdapter(lstItem.toMutableList(), R.layout.item_card, this, rcyList)
-//            adapter!!.setOnItemListener(this)
-//            rcyList.adapter = adapter
-//        }
-
-//        adapter!!.notifyDataSetChanged()
-
+    private fun setUI(){
 
         adapter = ItemPagerAdapter(lstItem.toMutableList(), supportFragmentManager, this)
         vpgList.adapter = adapter
@@ -221,17 +191,19 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
 
     }
 
-    fun getCategoryId(){
+    private fun getCategoryId(){
+
         if(intent.hasExtra("categoryid") && intent.hasExtra("category")){
-            categoryid = intent.getIntExtra("categoryid", 0)
+            categoryID = intent.getIntExtra("categoryid", 0)
             txtMenuTitle.text  = intent.getStringExtra("category")
         }
 
-        if(categoryid > 0){
+        if(categoryID > 0){
             getData()
         } else {
             backtoMain()
         }
+
     }
 
     private fun backtoMain(){
@@ -241,8 +213,8 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
 
     fun getData(){
         val dbHelper = DBHelper(this)
-        category = dbHelper.getCategory(categoryid)[0]
-        lstItem = dbHelper.getAllDhammaByCategory(categoryid)
+        category = dbHelper.getCategory(categoryID)[0]
+        lstItem = dbHelper.getAllDhammaByCategory(categoryID)
         if(lstItem.isNotEmpty()){
             setUI()
         } else {
@@ -250,20 +222,13 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
         }
     }
 
-//    override fun onItemClick(item: Dhamma, view: View) {
-//        Handler().postDelayed(Runnable {
-//            view.setBackgroundColor(resources.getColor(android.R.color.white, null))
-//        }, 1000)
-//        Toast.makeText(this, item.message, Toast.LENGTH_SHORT).show()
-//    }
-
 
     override fun onBackPressed() {
        // super.onBackPressed()
        backtoMain()
     }
 
-    override fun onFavBtnClick(item: Dhamma, view: FontTextView) {
+    override fun onFavBtnClick(item: Dhamma, view: TextView) {
         try {
 
             val dbHelper = DBHelper(this)

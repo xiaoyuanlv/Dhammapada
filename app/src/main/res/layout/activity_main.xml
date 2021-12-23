@@ -5,20 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity"
-    android:background="@color/colorBackground">
+   >
 
-    <ImageButton
+    <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/imgbtnInfo"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:src="@android:drawable/ic_menu_info_details"
-        android:background="@android:color/transparent"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_margin="10dp"
-        />
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_menu_info_details" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgTitle"
         android:layout_width="33dp"
         android:layout_height="33dp"
@@ -32,12 +34,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcyList"
-        android:layout_below="@id/imgTitle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/transparent"
+        android:layout_below="@id/imgTitle"
         android:layout_marginBottom="60dp"
-        />
+        android:background="@android:color/transparent" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -69,6 +70,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:text="@string/myanmar"
+            android:fontFamily="@font/mm3"
             android:textSize="12sp"
             android:background="@drawable/rounded_button"
             android:layout_toEndOf="@id/btnLangEn"
@@ -82,6 +84,7 @@
             android:layout_height="45dp"
             android:text="@string/pali"
             android:textSize="12sp"
+            android:fontFamily="@font/mm3"
             android:background="@drawable/rounded_button"
             android:layout_toEndOf="@id/btnLangMM"
             android:layout_alignParentBottom="true"
@@ -106,6 +109,7 @@
 
 
         <RelativeLayout
+            android:id="@+id/rlFav"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
@@ -113,23 +117,51 @@
             android:layout_margin="10dp"
             >
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/imgbtnFav"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/rounded_button"
                 />
 
-            <info.androidhive.fontawesome.FontTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/ftvFav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fa_star_solid"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
                 android:layout_centerInParent="true"
-                app:solid_icon="true"
+                android:fontFamily="@font/fasolid"
+                android:text="@string/book_font"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rlTheme"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@id/rlFav"
+            android:layout_margin="10dp"
+            >
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/imgbtnTheme"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_button"
                 />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/ftvTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/fasolid"
+                android:text="@string/palette_font"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
 
         </RelativeLayout>
 

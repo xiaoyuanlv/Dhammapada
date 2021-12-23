@@ -1,7 +1,8 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme"  parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme"  parent="Theme.AppCompat.DayNight.NoActionBar">
+
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -27,7 +28,7 @@
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
 
-    <style name="mDialog" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="mDialog" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -35,6 +36,11 @@
         <item name="android:windowBackground">@color/colorPrimary</item>
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:background">@color/colorPrimary</item>
+    </style>
+
+    <style name="CustomCard" parent="CardView">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="cardBackgroundColor">@android:color/white</item>
     </style>
 
 </resources>

@@ -4,9 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
-    android:padding="10dp"
-    >
+    android:padding="10dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -22,17 +20,19 @@
             android:layout_margin="5dp"
             android:padding="20dp">
 
-
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardDhamma"
+                style="@style/CustomCard"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                app:cardBackgroundColor="@android:color/white"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
                 android:elevation="10dp"
-                app:cardElevation="10dp"
                 app:cardCornerRadius="10dp"
-                android:layout_centerInParent="true">
+                app:cardElevation="10dp">
 
                 <RelativeLayout
                     android:id="@+id/rlDhamma"
@@ -42,19 +42,16 @@
                     android:background="@android:color/transparent"
                     android:padding="10dp">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/txtTitle"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:fontFamily="@font/mm3"
-                        android:textSize="23sp"
-                        android:text="..."
-                        android:lineSpacingExtra="5sp"
                         android:layout_centerInParent="true"
-                        android:padding="10dp"
+                        android:fontFamily="@font/mm3"
+                        android:gravity="center"
                         android:scrollbars="vertical"
-                        />
+                        android:text="..."
+                        android:textSize="17sp" />
 
                 </RelativeLayout>
 
@@ -63,7 +60,7 @@
 
         </RelativeLayout>
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@mipmap/lotusflower"
@@ -76,23 +73,23 @@
             android:layout_height="40dp"
             android:layout_gravity="end|top">
 
-            <ImageButton
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/imgbtnFav"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/rounded_button"
                 />
 
-            <info.androidhive.fontawesome.FontTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/ftvFav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fa_star_solid"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
                 android:layout_centerInParent="true"
-                app:solid_icon="true"
-                />
+                android:fontFamily="@font/fasolid"
+                android:text="@string/bookmark_font"
+                android:textColor="@android:color/white"
+
+                android:textSize="20sp" />
 
         </RelativeLayout>
 

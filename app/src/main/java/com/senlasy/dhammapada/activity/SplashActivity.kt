@@ -4,9 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.widget.TextView
 import com.senlasy.dhammapada.R
 import com.senlasy.dhammapada.utility.Typewriter
+import java.util.*
 
 class SplashActivity : AppCompatActivity(), Typewriter.onFinishListener {
 
@@ -14,13 +16,12 @@ class SplashActivity : AppCompatActivity(), Typewriter.onFinishListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-//        val twSubTitle = findViewById<Typewriter>(R.id.twSubTitle)
-//        twSubTitle.animateText(getString(R.string.app_subtitle))
-//        twSubTitle.setAnimationFinishListener(this)
 
-        Handler().postDelayed({
-           startMainActivity()
+        Handler(Looper.getMainLooper()).postDelayed({
+            startMainActivity()
         }, 3000)
+
+
 
     }
 

@@ -2,11 +2,8 @@
 <resources>
     <color name="colorPrimary">#FAFAFA</color>
     <color name="colorPrimaryDark">#4648A7</color>
-    <color name="colorAccent">#FFFFC3</color>
+    <color name="colorAccent">#F8DD55</color>
     <color name="colorBackground">#5557B5</color>
-
-<!--    <color name="colorPrimary">#FAFAFA</color>-->
-<!--    <color name="colorPrimaryDark">#4648A7</color>-->
-<!--    <color name="colorAccent">#FFFFC3</color>-->
-<!--    <color name="colorBackground">#5557B5</color>-->
+    <color name="darkStatusBar">#0B0C3F</color>
+    <color name="darkBackground">#131456</color>
 </resources>

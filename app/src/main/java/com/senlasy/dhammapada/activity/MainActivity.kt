@@ -2,6 +2,7 @@ package com.senlasy.dhammapada.activity
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,8 +13,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.RecyclerView
 import com.senlasy.dhammapada.R
 import com.senlasy.dhammapada.adapter.CategoryAdapter
@@ -29,6 +32,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var rcyList  : RecyclerView
     lateinit var imgbtnFav  : ImageButton
+    lateinit var ftvTheme : TextView
     var lstCategory : List<Category> = ArrayList()
     var adapter  : CategoryAdapter? = null
     var doubleBackToExitPressedOnce : Boolean = false
@@ -37,6 +41,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var btnLangMM : Button
     lateinit var btnLangPali : Button
     lateinit var btnLangePaliRoman : Button
+    lateinit var btnTheme: ImageButton
 
     lateinit var imgbtnInfo : ImageButton
 
@@ -59,6 +64,8 @@ class MainActivity : AppCompatActivity() {
         btnLangMM = findViewById(R.id.btnLangMM)
         btnLangPali = findViewById(R.id.btnLangPali)
         btnLangePaliRoman = findViewById(R.id.btnLangPaliRoman)
+        btnTheme = findViewById(R.id.imgbtnTheme)
+        ftvTheme = findViewById(R.id.ftvTheme)
 
         imgbtnInfo.setOnClickListener {
             try {
@@ -74,6 +81,7 @@ class MainActivity : AppCompatActivity() {
                     alertDialog.dismiss()
                 }
 
+
                 alertDialog.window!!.setBackgroundDrawableResource(R.drawable.dialog_bg)
                 alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                 alertDialog.show()
@@ -83,6 +91,31 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+
+
+         btnTheme.setOnClickListener {
+                    Toast.makeText(applicationContext, "Theme Changed", Toast.LENGTH_LONG).show()
+
+                    when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+                        Configuration.UI_MODE_NIGHT_NO -> {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                            delegate.applyDayNight()
+                            applyTheme()
+                        } // Night mode is not active, we're using the light theme
+                        Configuration.UI_MODE_NIGHT_YES -> {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                            delegate.applyDayNight()
+                            applyTheme()
+                        } // Night mode is active, we're using dark theme
+                        Configuration.UI_MODE_NIGHT_UNDEFINED -> {
+                            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                            delegate.applyDayNight()
+                            applyTheme()
+                        }
+                    }
+
+         }
+
 
         btnLangEn.setOnClickListener {
             is_en = !is_en
@@ -132,7 +165,16 @@ class MainActivity : AppCompatActivity() {
         setButtonLang(is_en, is_mm, is_pali, is_pali_roman)
     }
 
-    fun setButtonLang(en_lang : Boolean, mm_lang : Boolean, pali_lang : Boolean, pali_roman_lang : Boolean){
+
+    private fun applyTheme() {
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//        overridePendingTransition(0, 0)
+    }
+
+
+    private fun setButtonLang(en_lang : Boolean, mm_lang : Boolean, pali_lang : Boolean, pali_roman_lang : Boolean){
 
         if(adapter != null){
             adapter!!.setLangVisibility(en_lang, mm_lang, pali_lang, pali_roman_lang)
@@ -173,6 +215,27 @@ class MainActivity : AppCompatActivity() {
             btnLangePaliRoman.setTextColor(Color.WHITE)
         }
 
+
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        Toast.makeText(applicationContext, "Theme Changed", Toast.LENGTH_LONG).show()
+
+        when (newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_NO -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                delegate.applyDayNight()
+                applyTheme()
+            } // Night mode is not active, we're using the light theme
+            Configuration.UI_MODE_NIGHT_YES -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                delegate.applyDayNight()
+                applyTheme()
+            } // Night mode is active, we're using dark theme
+
+        }
 
     }
 
