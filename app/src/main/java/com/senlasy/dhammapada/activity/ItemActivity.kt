@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.senlasy.dhammapada.R
 import com.senlasy.dhammapada.adapter.ItemPagerAdapter
@@ -75,6 +76,7 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
         btnLangMM = findViewById(R.id.btnLangMM)
         btnLangPali = findViewById(R.id.btnLangPali)
         btnLangPaliRoman = findViewById(R.id.btnLangPaliRoman)
+
 
         btnLangEn.setOnClickListener {
             is_en = true
@@ -239,11 +241,10 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
             }
 
             if (item.fav == 1) {
-                view.setTextColor(this.resources.getColor(R.color.colorAccent, null))
+                view.setTextColor(ContextCompat.getColor(this, R.color.colorAccent))
             } else {
-                view.setTextColor(this.resources.getColor(android.R.color.white, null))
+                view.setTextColor(ContextCompat.getColor(this, android.R.color.white))
             }
-
 
             dbHelper.saveFav(item.id, item.fav)
             adapter!!.notifyDataSetChanged()

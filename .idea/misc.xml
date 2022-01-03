@@ -5,14 +5,14 @@
       <map>
         <entry key="app/src/main/res/layout-land/activity_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_fav.xml" value="0.11656768266167378" />
-        <entry key="app/src/main/res/layout/activity_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_item.xml" value="0.14021982095933394" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1721014492753623" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1721014492753623" />
-        <entry key="app/src/main/res/layout/app_info_dialog.xml" value="0.1721014492753623" />
-        <entry key="app/src/main/res/layout/fragment_item.xml" value="0.1721014492753623" />
+        <entry key="app/src/main/res/layout/app_info_dialog.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_item.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_card.xml" value="0.1721014492753623" />
         <entry key="app/src/main/res/layout/item_category.xml" value="0.1721014492753623" />
-        <entry key="app/src/main/res/layout/item_list.xml" value="0.1721014492753623" />
+        <entry key="app/src/main/res/layout/item_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_progressbar.xml" value="0.1721014492753623" />
       </map>
     </option>

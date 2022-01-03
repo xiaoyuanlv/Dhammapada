@@ -8,9 +8,9 @@ android {
     buildToolsVersion '30.0.2'
     defaultConfig {
         applicationId "com.senlasy.dhammapada"
-        minSdkVersion 29
-        versionCode 7
-        versionName "2"
+        minSdkVersion 21
+        versionCode 8
+        versionName "2.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

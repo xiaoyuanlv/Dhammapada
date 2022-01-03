@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
 
 
          btnTheme.setOnClickListener {
-                    Toast.makeText(applicationContext, "Theme Changed", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(applicationContext, "Theme Changed", Toast.LENGTH_LONG).show()
 
                     when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
                         Configuration.UI_MODE_NIGHT_NO -> {
@@ -221,7 +221,7 @@ class MainActivity : AppCompatActivity() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
 
-        Toast.makeText(applicationContext, "Theme Changed", Toast.LENGTH_LONG).show()
+       // Toast.makeText(applicationContext, "Theme Changed", Toast.LENGTH_LONG).show()
 
         when (newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
             Configuration.UI_MODE_NIGHT_NO -> {
@@ -254,7 +254,7 @@ class MainActivity : AppCompatActivity() {
                 override fun onItemClick(item: Category, v : View) {
                     Handler().postDelayed(Runnable {
 
-                        v.setBackgroundColor(context.resources.getColor(android.R.color.white,null))
+                        v.setBackgroundColor(Color.WHITE)
                         finish()
                         val intent = Intent(context, ItemActivity::class.java)
                         intent.putExtra("categoryid", item.id)

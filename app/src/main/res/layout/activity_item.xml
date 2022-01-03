@@ -120,14 +120,16 @@
         android:id="@+id/btnLangPaliRoman"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:text="Pāḷi"
-        android:textSize="12sp"
-        android:background="@drawable/rounded_button"
-        android:layout_toEndOf="@id/btnLangPali"
         android:layout_alignParentBottom="true"
-        android:layout_margin="5dp"
-        android:layout_marginBottom="10dp"
-        />
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toEndOf="@id/btnLangPali"
+        android:background="@drawable/rounded_button"
+        android:text="Pāḷi"
+        android:textSize="12sp" />
+
 
 
 </RelativeLayout>

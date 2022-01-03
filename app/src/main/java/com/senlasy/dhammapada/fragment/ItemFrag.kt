@@ -1,6 +1,7 @@
 package com.senlasy.dhammapada.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 
 import com.senlasy.dhammapada.R
@@ -33,6 +35,7 @@ class ItemFrag : Fragment() {
     private lateinit var imgbtnFav : ImageButton
     private lateinit var ftvFav : TextView
     private lateinit var btnNum : Button
+    private lateinit var btnShare : ImageButton
 
     private var is_mm_visible = true
     private var is_en_visible = true
@@ -64,11 +67,39 @@ class ItemFrag : Fragment() {
         imgbtnFav = v.findViewById(R.id.imgbtnFav)
         ftvFav = v.findViewById(R.id.ftvFav)
         btnNum = v.findViewById(R.id.btnNum)
+        btnShare = v.findViewById(R.id.imgbtnShare)
+        btnShare.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            intent.type = "text/plain"
+
+            var shareBody = ""
+            if(is_en_visible){
+                shareBody =
+                    HtmlCompat.fromHtml(dhamma!!.message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
+            } else if(is_mm_visible){
+                shareBody =
+                    HtmlCompat.fromHtml(dhamma!!.mm_message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
+            } else if(is_pali_visible){
+                shareBody =
+                    HtmlCompat.fromHtml(dhamma!!.pali_message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
+            } else if(is_pali_roman_visible) {
+                shareBody =
+                    HtmlCompat.fromHtml(dhamma!!.paliroman!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
+            } else {
+                shareBody =
+                    HtmlCompat.fromHtml(dhamma!!.message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
+            }
+
+
+            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, dhamma!!.id.toString())
+            intent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody)
+            startActivity(Intent.createChooser(intent, "Share"))
+        }
 
         if(dhamma!!.fav == 1){
-            ftvFav.setTextColor(requireActivity().resources.getColor(R.color.colorAccent,null))
+            ftvFav.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
         } else {
-            ftvFav.setTextColor(requireActivity().resources.getColor(android.R.color.white,null))
+            ftvFav.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.white))
         }
 
         if(is_en_visible){

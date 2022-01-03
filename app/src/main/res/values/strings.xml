@@ -16,5 +16,6 @@
     <string name="sun_font">\uf185</string>
     <string name="book_font">\uf02d</string>
     <string name="bookmark_font">\uf02e</string>
+    <string name="share_font">\uf1e0</string>
     <string name="palette_font"></string>
 </resources>
