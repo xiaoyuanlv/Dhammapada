@@ -35,7 +35,6 @@ class ItemFrag : Fragment() {
     private lateinit var imgbtnFav : ImageButton
     private lateinit var ftvFav : TextView
     private lateinit var btnNum : Button
-    private lateinit var btnShare : ImageButton
 
     private var is_mm_visible = true
     private var is_en_visible = true
@@ -67,34 +66,16 @@ class ItemFrag : Fragment() {
         imgbtnFav = v.findViewById(R.id.imgbtnFav)
         ftvFav = v.findViewById(R.id.ftvFav)
         btnNum = v.findViewById(R.id.btnNum)
-        btnShare = v.findViewById(R.id.imgbtnShare)
-        btnShare.setOnClickListener {
-            val intent = Intent(Intent.ACTION_SEND)
-            intent.type = "text/plain"
 
-            var shareBody = ""
-            if(is_en_visible){
-                shareBody =
-                    HtmlCompat.fromHtml(dhamma!!.message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
-            } else if(is_mm_visible){
-                shareBody =
-                    HtmlCompat.fromHtml(dhamma!!.mm_message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
-            } else if(is_pali_visible){
-                shareBody =
-                    HtmlCompat.fromHtml(dhamma!!.pali_message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
-            } else if(is_pali_roman_visible) {
-                shareBody =
-                    HtmlCompat.fromHtml(dhamma!!.paliroman!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
-            } else {
-                shareBody =
-                    HtmlCompat.fromHtml(dhamma!!.message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
-            }
-
-
-            intent.putExtra(android.content.Intent.EXTRA_SUBJECT, dhamma!!.id.toString())
-            intent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody)
-            startActivity(Intent.createChooser(intent, "Share"))
+        imgbtnFav.setOnClickListener {
+            listener?.onFavBtnClick(dhamma!!, ftvFav)
         }
+
+        return v
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         if(dhamma!!.fav == 1){
             ftvFav.setTextColor(ContextCompat.getColor(requireContext(), R.color.colorAccent))
@@ -116,11 +97,6 @@ class ItemFrag : Fragment() {
 
         btnNum.text = dhamma!!.id.toString()
 
-        imgbtnFav.setOnClickListener {
-            listener?.onFavBtnClick(dhamma!!, ftvFav)
-        }
-
-        return v
     }
 
     override fun onAttach(context: Context) {

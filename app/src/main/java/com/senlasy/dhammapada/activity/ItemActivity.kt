@@ -4,26 +4,33 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.text.HtmlCompat
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.senlasy.dhammapada.R
 import com.senlasy.dhammapada.adapter.ItemPagerAdapter
 import com.senlasy.dhammapada.database.DBHelper
 import com.senlasy.dhammapada.fragment.ItemFrag
 import com.senlasy.dhammapada.model.Category
 import com.senlasy.dhammapada.model.Dhamma
+import com.senlasy.dhammapada.utility.ZoomOutTransformation
 
 
-class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener{
+class ItemActivity : FragmentActivity(), ItemFrag.OnFragmentInteractionListener{
 
     private lateinit var imgbtnLayout : ImageButton
     private lateinit var ftvLayout : View
-    private lateinit var vpgList : ViewPager
+    private lateinit var vpgList : ViewPager2
     lateinit var imgbtnFav  : ImageButton
     private lateinit var txtMenuTitle : TextView
     private lateinit var txtMark : TextView
@@ -39,6 +46,7 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
     private lateinit var btnLangMM : Button
     private lateinit var btnLangPali : Button
     private lateinit var btnLangPaliRoman : Button
+    private lateinit var btnShare : Button
 
     private var is_en = true
     private var is_mm = false
@@ -56,8 +64,10 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
         txtMenuTitle = findViewById(R.id.txtMenuTitle)
         txtMark = findViewById(R.id.txtMark)
 
+        vpgList.setPageTransformer(ZoomOutTransformation());
+
         findViewById<ImageButton>(R.id.imgbtnBack).setOnClickListener {
-            backtoMain()
+            backMain()
         }
 
         imgbtnFav.setOnClickListener {
@@ -76,7 +86,7 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
         btnLangMM = findViewById(R.id.btnLangMM)
         btnLangPali = findViewById(R.id.btnLangPali)
         btnLangPaliRoman = findViewById(R.id.btnLangPaliRoman)
-
+        btnShare = findViewById(R.id.btnShare)
 
         btnLangEn.setOnClickListener {
             is_en = true
@@ -84,6 +94,9 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
             is_mm = false
             is_paliroman = false
             setButtonLang(is_en, is_mm, is_pali, is_paliroman)
+            val remem_current = vpgList.currentItem
+            vpgList.adapter = adapter
+            vpgList.currentItem = remem_current
         }
 
         btnLangMM.setOnClickListener {
@@ -92,6 +105,9 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
             is_pali = false
             is_paliroman = false
             setButtonLang(is_en, is_mm, is_pali, is_paliroman)
+            val remem_current = vpgList.currentItem
+            vpgList.adapter = adapter
+            vpgList.currentItem = remem_current
         }
 
         btnLangPali.setOnClickListener {
@@ -100,6 +116,9 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
             is_mm = false
             is_paliroman = false
             setButtonLang(is_en, is_mm, is_pali, is_paliroman)
+            val remem_current = vpgList.currentItem
+            vpgList.adapter = adapter
+            vpgList.currentItem = remem_current
         }
 
         btnLangPaliRoman.setOnClickListener {
@@ -108,6 +127,13 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
             is_mm = false
             is_paliroman = true
             setButtonLang(is_en, is_mm, is_pali, is_paliroman)
+            val remem_current = vpgList.currentItem
+            vpgList.adapter = adapter
+            vpgList.currentItem = remem_current
+        }
+
+        btnShare.setOnClickListener {
+           share(lstItem.get(vpgList.currentItem))
         }
 
         if (savedInstanceState != null && savedInstanceState.containsKey("is_mm")) {
@@ -116,7 +142,6 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
             is_en = savedInstanceState.getBoolean("is_en")
             is_paliroman = savedInstanceState.getBoolean("is_paliroman")
         }
-
 
         setButtonLang(is_en, is_mm, is_pali, is_paliroman)
     }
@@ -187,10 +212,38 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
 
     private fun setUI(){
 
-        adapter = ItemPagerAdapter(lstItem.toMutableList(), supportFragmentManager, this)
+        adapter = ItemPagerAdapter(lstItem.toMutableList(), this)
         vpgList.adapter = adapter
 
+    }
 
+
+    private fun share(dhamma: Dhamma) {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "text/plain"
+
+        var shareBody = ""
+        if(is_en){
+            shareBody =
+                HtmlCompat.fromHtml(dhamma!!.message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
+        } else if(is_mm){
+            shareBody =
+                HtmlCompat.fromHtml(dhamma!!.mm_message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
+        } else if(is_pali){
+            shareBody =
+                HtmlCompat.fromHtml(dhamma!!.pali_message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
+        } else if(is_paliroman) {
+            shareBody =
+                HtmlCompat.fromHtml(dhamma!!.paliroman!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
+        } else {
+            shareBody =
+                HtmlCompat.fromHtml(dhamma!!.message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
+        }
+
+
+        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, dhamma!!.id.toString())
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody)
+        startActivity(Intent.createChooser(intent, "Share"))
     }
 
     private fun getCategoryId(){
@@ -203,31 +256,31 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
         if(categoryID > 0){
             getData()
         } else {
-            backtoMain()
+            backMain()
         }
 
     }
 
-    private fun backtoMain(){
+    private fun backMain(){
         finish()
         startActivity(Intent(this, MainActivity::class.java))
     }
 
-    fun getData(){
+    private fun getData(){
         val dbHelper = DBHelper(this)
         category = dbHelper.getCategory(categoryID)[0]
         lstItem = dbHelper.getAllDhammaByCategory(categoryID)
         if(lstItem.isNotEmpty()){
             setUI()
         } else {
-            backtoMain()
+            backMain()
         }
     }
 
 
     override fun onBackPressed() {
        // super.onBackPressed()
-       backtoMain()
+       backMain()
     }
 
     override fun onFavBtnClick(item: Dhamma, view: TextView) {

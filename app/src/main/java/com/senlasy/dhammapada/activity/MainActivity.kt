@@ -81,7 +81,6 @@ class MainActivity : AppCompatActivity() {
                     alertDialog.dismiss()
                 }
 
-
                 alertDialog.window!!.setBackgroundDrawableResource(R.drawable.dialog_bg)
                 alertDialog.window!!.attributes.windowAnimations = R.style.DialogAnimation
                 alertDialog.show()

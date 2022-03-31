@@ -6,20 +6,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import androidx.core.widget.TextViewCompat
-import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.senlasy.dhammapada.R
 import com.senlasy.dhammapada.adapter.ItemPagerAdapter
 import com.senlasy.dhammapada.database.DBHelper
 import com.senlasy.dhammapada.fragment.ItemFrag
 import com.senlasy.dhammapada.model.Dhamma
+import com.senlasy.dhammapada.utility.ZoomOutTransformation
 
 class FavActivity : AppCompatActivity(),  ItemFrag.OnFragmentInteractionListener {
 
     private lateinit var imgbtnLayout : ImageButton
     private lateinit var imgbtnMain : ImageButton
     private lateinit var txtEmpty : TextView
-    private lateinit var vpgList : ViewPager
+    private lateinit var vpgList : ViewPager2
 
     private var lstItem : List<Dhamma> = ArrayList()
     private var isList = true
@@ -48,6 +48,8 @@ class FavActivity : AppCompatActivity(),  ItemFrag.OnFragmentInteractionListener
         txtEmpty = findViewById(R.id.txtEmpty)
         vpgList = findViewById(R.id.vpgList)
 
+        vpgList.setPageTransformer(ZoomOutTransformation());
+
         imgbtnMain.setOnClickListener {
             backToMain()
         }
@@ -62,12 +64,17 @@ class FavActivity : AppCompatActivity(),  ItemFrag.OnFragmentInteractionListener
         btnLangPali = findViewById(R.id.btnLangPali)
         btnLangPaliRoman = findViewById(R.id.btnLangPaliRoman)
 
+
+
         btnLangEn.setOnClickListener {
             is_en = true
             is_pali = false
             is_mm = false
             is_paliroman = false
             setButtonLang(is_en, is_mm, is_pali, is_paliroman)
+            val remem_current = vpgList.currentItem
+            vpgList.adapter = adapter
+            vpgList.currentItem = remem_current
         }
 
         btnLangMM.setOnClickListener {
@@ -76,6 +83,9 @@ class FavActivity : AppCompatActivity(),  ItemFrag.OnFragmentInteractionListener
             is_pali = false
             is_paliroman = false
             setButtonLang(is_en, is_mm, is_pali, is_paliroman)
+            val remem_current = vpgList.currentItem
+            vpgList.adapter = adapter
+            vpgList.currentItem = remem_current
         }
 
         btnLangPali.setOnClickListener {
@@ -84,6 +94,9 @@ class FavActivity : AppCompatActivity(),  ItemFrag.OnFragmentInteractionListener
             is_mm = false
             is_paliroman = false
             setButtonLang(is_en, is_mm, is_pali, is_paliroman)
+            val remem_current = vpgList.currentItem
+            vpgList.adapter = adapter
+            vpgList.currentItem = remem_current
         }
 
         btnLangPaliRoman.setOnClickListener {
@@ -92,6 +105,9 @@ class FavActivity : AppCompatActivity(),  ItemFrag.OnFragmentInteractionListener
             is_mm = false
             is_paliroman = true
             setButtonLang(is_en, is_mm, is_pali, is_paliroman)
+            val remem_current = vpgList.currentItem
+            vpgList.adapter = adapter
+            vpgList.currentItem = remem_current
         }
 
         if (savedInstanceState != null && savedInstanceState.containsKey("is_mm")) {
@@ -104,8 +120,6 @@ class FavActivity : AppCompatActivity(),  ItemFrag.OnFragmentInteractionListener
         }
 
         getData()
-
-
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -163,7 +177,7 @@ class FavActivity : AppCompatActivity(),  ItemFrag.OnFragmentInteractionListener
         backToMain()
     }
 
-    fun backToMain() {
+    private fun backToMain() {
         finish()
         startActivity(Intent(this, MainActivity::class.java))
     }
@@ -172,10 +186,10 @@ class FavActivity : AppCompatActivity(),  ItemFrag.OnFragmentInteractionListener
 
     private fun setUI(){
 
-        adapter = ItemPagerAdapter(lstItem.toMutableList(), supportFragmentManager, this)
+        adapter = ItemPagerAdapter(lstItem.toMutableList(), this)
         vpgList.adapter = adapter
 
-        if(adapter!!.DhammaList.size == 0){
+        if(adapter!!.lstDhamma.size == 0){
             txtEmpty.visibility = View.VISIBLE
             rlLangLayout.visibility = View.GONE
         } else {
@@ -184,7 +198,7 @@ class FavActivity : AppCompatActivity(),  ItemFrag.OnFragmentInteractionListener
         }
 
         setButtonLang(is_en, is_mm, is_pali, is_paliroman)
-        adapter!!.notifyDataSetChanged()
+
 
     }
 
@@ -209,10 +223,9 @@ class FavActivity : AppCompatActivity(),  ItemFrag.OnFragmentInteractionListener
             item.fav = 0
         }
         dbHelper.saveFav(item.id, item.fav)
-        adapter!!.DhammaList.remove(item)
-        adapter!!.notifyDataSetChanged()
+        adapter!!.lstDhamma.remove(item)
 
-        if(adapter!!.DhammaList.size == 0){
+        if(adapter!!.lstDhamma.size == 0){
             txtEmpty.visibility = View.VISIBLE
             rlLangLayout.visibility = View.GONE
         } else {

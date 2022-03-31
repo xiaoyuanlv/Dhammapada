@@ -1,6 +1,9 @@
 package com.senlasy.dhammapada.adapter
 
 import android.content.Context
+import android.content.res.Resources
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,12 +47,10 @@ class CategoryAdapter(
 
     fun addAll(item: List<Category>) {
         CategoryList.addAll(item)
-        notifyDataSetChanged()
     }
 
     fun setData(lst: MutableList<Category>){
         CategoryList = lst
-        notifyDataSetChanged()
     }
 
     fun remove(item: Category) {
@@ -124,7 +125,8 @@ class CategoryAdapter(
             setData(item, is_en_visible, is_mm_visible, is_pali_visible, is_pali_roman_visible)
 
             rlCategory.setOnClickListener {
-                rlCategory.setBackgroundColor(context.resources.getColor( R.color.colorAccent, null))
+                rlCategory.setBackgroundColor(Color.parseColor("#FFDE03"));
+//                rlCategory.setBackgroundColor(context.resources.getColor(R.color.colorAccent, ))
                 focusedItem = layoutPosition
                 listener!!.onItemClick(item, it)
             }

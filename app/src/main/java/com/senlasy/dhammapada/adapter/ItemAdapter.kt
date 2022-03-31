@@ -46,12 +46,10 @@ class ItemAdapter(
 
     fun addAll(item: List<Dhamma>) {
         ItemList.addAll(item)
-        notifyDataSetChanged()
     }
 
     fun setData(lst: MutableList<Dhamma>){
         ItemList = lst
-        notifyDataSetChanged()
     }
 
     fun remove(item: Dhamma) {

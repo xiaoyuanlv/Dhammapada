@@ -1,41 +1,36 @@
 package com.senlasy.dhammapada.adapter
 
-import android.content.Context
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager.widget.PagerAdapter
+import androidx.fragment.app.*
+import androidx.viewpager2.adapter.StatefulAdapter
 import com.senlasy.dhammapada.fragment.ItemFrag
 import com.senlasy.dhammapada.model.Dhamma
 
-class ItemPagerAdapter(var DhammaList: MutableList<Dhamma>,fragmentManager : FragmentManager,var context : Context) : FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
-
-    var is_en_visible : Boolean = true
-    var is_mm_visible : Boolean = false
-    var is_pali_visible : Boolean = false
-    var is_pali_roman  : Boolean = false
+class ItemPagerAdapter(var lstDhamma: MutableList<Dhamma>, var context : FragmentActivity) : androidx.viewpager2.adapter.FragmentStateAdapter(context), StatefulAdapter {
 
 
-    override fun getItem(position: Int): Fragment {
-        return ItemFrag.newInstance(DhammaList[position], is_en_visible, is_mm_visible, is_pali_visible, is_pali_roman)
-    }
+
+    var isEn : Boolean = true
+    var isMM : Boolean = false
+    var isPali : Boolean = false
+    var isPaliRoman  : Boolean = false
 
     fun setLangVisibility(is_en_visible : Boolean, is_mm_visible : Boolean, is_pali_visible : Boolean, is_pali_roman : Boolean){
-        this.is_en_visible = is_en_visible
-        this.is_mm_visible = is_mm_visible
-        this.is_pali_visible = is_pali_visible
-        this.is_pali_roman = is_pali_roman
+        this.isEn = is_en_visible
+        this.isMM = is_mm_visible
+        this.isPali = is_pali_visible
+        this.isPaliRoman = is_pali_roman
         notifyDataSetChanged()
     }
 
-    override fun getItemPosition(`object`: Any): Int {
-        return PagerAdapter.POSITION_NONE
+    override fun getItemCount(): Int {
+       return lstDhamma.count()
     }
 
-    override fun getCount(): Int {
-        return DhammaList.count()
+    override fun createFragment(position: Int): Fragment {
+        return ItemFrag.newInstance(lstDhamma[position], isEn, isMM, isPali, isPaliRoman)
     }
+
+
 
 
 }
