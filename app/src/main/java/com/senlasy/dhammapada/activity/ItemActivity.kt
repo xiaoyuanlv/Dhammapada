@@ -26,7 +26,7 @@ import com.senlasy.dhammapada.model.Dhamma
 import com.senlasy.dhammapada.utility.ZoomOutTransformation
 
 
-class ItemActivity : FragmentActivity(), ItemFrag.OnFragmentInteractionListener{
+class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener{
 
     private lateinit var imgbtnLayout : ImageButton
     private lateinit var ftvLayout : View
