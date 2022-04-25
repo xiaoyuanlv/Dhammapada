@@ -2,6 +2,7 @@ package com.senlasy.dhammapada.utility
 
 import android.content.Context
 import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
 import android.view.View
 import android.widget.TextView
@@ -14,8 +15,6 @@ class Typewriter(context: Context?, attrs: AttributeSet?) : androidx.appcompat.w
     public var type: String? = null
 
     private var listener: onFinishListener? = null
-
-    private val mHandler = Handler()
 
     interface onFinishListener {
         fun onFinishListener(view: TextView, text: String, type: String?)
@@ -30,7 +29,9 @@ class Typewriter(context: Context?, attrs: AttributeSet?) : androidx.appcompat.w
         if (mIndex <= mText!!.length) {
             delayCaller()
         } else{
-            mHandler.postDelayed(hideTextView, 1000)
+            Handler(Looper.myLooper()!!).postDelayed({
+                hideTextView
+            }, 1000);
         }
     }
 
@@ -40,7 +41,9 @@ class Typewriter(context: Context?, attrs: AttributeSet?) : androidx.appcompat.w
     }
 
     fun delayCaller() {
-        mHandler.postDelayed(characterAdder, mDelay)
+        Handler(Looper.myLooper()!!).postDelayed({
+            characterAdder
+        }, mDelay);
     }
 
 
@@ -49,8 +52,9 @@ class Typewriter(context: Context?, attrs: AttributeSet?) : androidx.appcompat.w
         mIndex = 0
 
         setText("")
-        mHandler.removeCallbacks(characterAdder)
-        mHandler.postDelayed(characterAdder, mDelay)
+        Handler(Looper.myLooper()!!).postDelayed({
+            characterAdder
+        }, mDelay);
     }
 
     fun setCharacterDelay(millis: Long) {

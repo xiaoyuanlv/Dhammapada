@@ -25,7 +25,6 @@ import com.senlasy.dhammapada.model.Category
 import com.senlasy.dhammapada.model.Dhamma
 import com.senlasy.dhammapada.utility.ZoomOutTransformation
 
-
 class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener{
 
     private lateinit var imgbtnLayout : ImageButton
@@ -223,25 +222,26 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
         intent.type = "text/plain"
 
         var shareBody = ""
+
         if(is_en){
             shareBody =
-                HtmlCompat.fromHtml(dhamma!!.message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
+                HtmlCompat.fromHtml(dhamma.message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
         } else if(is_mm){
             shareBody =
-                HtmlCompat.fromHtml(dhamma!!.mm_message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
+                HtmlCompat.fromHtml(dhamma.mm_message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
         } else if(is_pali){
             shareBody =
-                HtmlCompat.fromHtml(dhamma!!.pali_message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
+                HtmlCompat.fromHtml(dhamma.pali_message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
         } else if(is_paliroman) {
             shareBody =
-                HtmlCompat.fromHtml(dhamma!!.paliroman!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
+                HtmlCompat.fromHtml(dhamma.paliroman!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
         } else {
             shareBody =
-                HtmlCompat.fromHtml(dhamma!!.message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
+                HtmlCompat.fromHtml(dhamma.message!!, HtmlCompat.FROM_HTML_MODE_COMPACT).toString()
         }
 
 
-        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, dhamma!!.id.toString())
+        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, dhamma.id.toString())
         intent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody)
         startActivity(Intent.createChooser(intent, "Share"))
     }

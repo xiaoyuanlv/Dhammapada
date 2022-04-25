@@ -16,8 +16,7 @@ import com.senlasy.dhammapada.model.Category
 class CategoryAdapter(
     var CategoryList: MutableList<Category>,
     private val rowLayout: Int,
-    private val context: Context,
-    recyclerView: RecyclerView
+    private val context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var listener: OnItemClickListener? = null
@@ -72,7 +71,7 @@ class CategoryAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is CategoryViewHolder) {
 
-            holder.bind(CategoryList[position], listener, context, is_en_visible, is_mm_visible, is_pali_visible, is_pali_roman_visible)
+            holder.bind(CategoryList[position], listener, is_en_visible, is_mm_visible, is_pali_visible, is_pali_roman_visible)
 
         } else {
             val loadingViewHolder = holder as ViewHolderLoading
@@ -121,7 +120,7 @@ class CategoryAdapter(
             txtMark = v.findViewById(R.id.txtMark)
         }
 
-        fun bind(item: Category, listener: OnItemClickListener?, context: Context, is_en_visible : Boolean, is_mm_visible : Boolean, is_pali_visible : Boolean, is_pali_roman_visible : Boolean) {
+        fun bind(item: Category, listener: OnItemClickListener?, is_en_visible : Boolean, is_mm_visible : Boolean, is_pali_visible : Boolean, is_pali_roman_visible : Boolean) {
             setData(item, is_en_visible, is_mm_visible, is_pali_visible, is_pali_roman_visible)
 
             rlCategory.setOnClickListener {

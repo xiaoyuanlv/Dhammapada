@@ -76,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:fontFamily="@font/impact"
-                        android:text="V 2.3"
+                        android:text="V 3"
                         android:textSize="17sp"
                         android:textColor="@android:color/black"
                         android:textAlignment="center"

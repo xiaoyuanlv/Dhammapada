@@ -7,6 +7,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -21,11 +22,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.senlasy.dhammapada.R
 import com.senlasy.dhammapada.adapter.CategoryAdapter
 import com.senlasy.dhammapada.adapter.GridAutoFitLayoutManager
-import com.senlasy.dhammapada.adapter.ItemPagerAdapter
 import com.senlasy.dhammapada.database.DBHelper
-import com.senlasy.dhammapada.fragment.ItemFrag
 import com.senlasy.dhammapada.model.Category
-import com.senlasy.dhammapada.model.Dhamma
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
@@ -248,20 +246,20 @@ class MainActivity : AppCompatActivity() {
         var dbHelper = DBHelper(this)
         lstCategory = dbHelper.getAllCategory()
         if (lstCategory.isNotEmpty()){
-            adapter = CategoryAdapter(lstCategory.toMutableList(), R.layout.item_category, this, rcyList)
+            adapter = CategoryAdapter(lstCategory.toMutableList(), R.layout.item_category, this)
             adapter!!.setOnItemListener(object: CategoryAdapter.OnItemClickListener {
-                override fun onItemClick(item: Category, v : View) {
-                    Handler().postDelayed(Runnable {
+                override fun onItemClick(item: Category, view : View) {
 
-                        v.setBackgroundColor(Color.WHITE)
-                        finish()
-                        val intent = Intent(context, ItemActivity::class.java)
-                        intent.putExtra("categoryid", item.id)
-                        intent.putExtra("category", item.title)
-                        startActivity(intent)
-
-                    }, 1000)
-
+                    Handler(Looper.myLooper()!!).postDelayed(
+                        Runnable {
+                            view.setBackgroundColor(Color.WHITE)
+                            finish()
+                            val intent = Intent(context, ItemActivity::class.java)
+                            intent.putExtra("categoryid", item.id)
+                            intent.putExtra("category", item.title)
+                            startActivity(intent)
+                        }
+                    , 1000);
 
 
                 }
@@ -279,9 +277,12 @@ class MainActivity : AppCompatActivity() {
         this.doubleBackToExitPressedOnce = true
         Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
 
-        Handler().postDelayed(Runnable() {
-            doubleBackToExitPressedOnce = false
-        }, 2000)
+        Handler(Looper.myLooper()!!).postDelayed(
+            Runnable {
+                doubleBackToExitPressedOnce = false
+            }
+            , 2000);
+
     }
 
 

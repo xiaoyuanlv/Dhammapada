@@ -23,17 +23,17 @@ class GridAutoFitLayoutManager : GridLayoutManager {
     }/* Initially set spanCount to 1, will be changed automatically later. */
 
     private fun checkedColumnWidth(context: Context, columnWidth: Int): Int {
-        var columnWidth = columnWidth
-        if (columnWidth <= 0) {
+        var colWidth = columnWidth
+        if (colWidth <= 0) {
             /* Set default columnWidth value (150dp here). It is better to move this constant
             to static constant on top, but we need context to convert it to dp, so can't really
             do so. */
-            columnWidth = TypedValue.applyDimension(
+            colWidth = TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, 180f,
                 context.resources.displayMetrics
             ).toInt()
         }
-        return columnWidth
+        return colWidth
     }
 
     fun setColumnWidth(newColumnWidth: Int) {

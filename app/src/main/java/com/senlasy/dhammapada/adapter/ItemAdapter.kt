@@ -18,8 +18,7 @@ import com.senlasy.dhammapada.model.Dhamma
 class ItemAdapter(
     private var ItemList: MutableList<Dhamma>,
     private var rowLayout: Int,
-    private val context: Context,
-    recyclerView: RecyclerView
+    private val context: Context
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var listener: OnItemClickListener? = null

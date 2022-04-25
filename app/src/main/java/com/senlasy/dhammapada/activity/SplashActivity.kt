@@ -16,12 +16,9 @@ class SplashActivity : AppCompatActivity(), Typewriter.onFinishListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-
         Handler(Looper.getMainLooper()).postDelayed({
             startMainActivity()
         }, 3000)
-
-
 
     }
 

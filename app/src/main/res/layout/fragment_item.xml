@@ -13,13 +13,14 @@
             android:layout_height="match_parent"
             app:cardBackgroundColor="@android:color/transparent"
             app:cardElevation="0dp"
-            android:elevation="0dp" >
+            android:elevation="0dp"
+            app:contentPadding="0dp"
+           >
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent">
-
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardDhamma"
@@ -27,13 +28,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
                     android:elevation="10dp"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp">
+
+
 
                     <RelativeLayout
                         android:id="@+id/rlDhamma"
@@ -44,26 +47,26 @@
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/txtTitle"
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="40dp"
-                            android:layout_marginEnd="20dp"
                             android:fontFamily="@font/mm3"
                             android:gravity="center"
                             android:lineSpacingExtra="14sp"
                             android:scrollbars="vertical"
                             android:text="..."
-                            android:textSize="17sp" />
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:paddingTop="20dp"
+                            android:paddingBottom="14dp"
+                            android:textSize="17sp"
+                            />
 
                     </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
 
-
             </RelativeLayout>
-
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
