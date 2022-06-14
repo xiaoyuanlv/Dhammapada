@@ -20,7 +20,7 @@ class DBHelper(private val context: Context) {
         private val TBL_DHAMA = "tbl_dhamma"
     }
 
-    fun openDatabase(): SQLiteDatabase {
+    private fun openDatabase(): SQLiteDatabase {
         val dbFile = context.getDatabasePath(DB_NAME)
 
         val currentDBVersion : Boolean =  SharePrefHelper().checkCurrentDB(context)
@@ -60,7 +60,7 @@ class DBHelper(private val context: Context) {
     }
 
 
-
+    @SuppressLint("Range")
     fun getFavList(): List<Dhamma> {
         val lstData = ArrayList<Dhamma>()
 
@@ -120,7 +120,7 @@ class DBHelper(private val context: Context) {
     fun getDhammaTotalCountByCategory(id: Int) : Int {
         var total_count = 0
 
-        var query = "SELECT COUNT(tbl_dhamma.id) as total_count from tbl_dhamma\n" +
+        val query = "SELECT COUNT(tbl_dhamma.id) as total_count from tbl_dhamma\n" +
                 "where tbl_dhamma.category_id = " + id
 
         val db = this.openDatabase()
@@ -139,6 +139,7 @@ class DBHelper(private val context: Context) {
 
     }
 
+    @SuppressLint("Range")
     fun getCategory(id : Int): List<Category> {
         val lstCategory = ArrayList<Category>()
 
@@ -157,7 +158,7 @@ class DBHelper(private val context: Context) {
                 var firstNumber = getFirstNumberOfDhamma(catid)
                 var totalCount = getDhammaTotalCountByCategory(catid)
                 var lastNumber = firstNumber + totalCount - 1
-                var mark = firstNumber.toString() + " - " + lastNumber
+                var mark = "$firstNumber - $lastNumber"
 
                 val category = Category(catid,
                     cursor.getString(cursor.getColumnIndex("title")),
@@ -175,6 +176,7 @@ class DBHelper(private val context: Context) {
         return lstCategory
     }
 
+    @SuppressLint("Range")
     fun getAllCategory(): List<Category> {
         val lstCategory = ArrayList<Category>()
 
@@ -192,7 +194,7 @@ class DBHelper(private val context: Context) {
                 var firstNumber = getFirstNumberOfDhamma(catid)
                 var totalCount = getDhammaTotalCountByCategory(catid)
                 var lastNumber = firstNumber + totalCount - 1
-                var mark = firstNumber.toString() + " - " + lastNumber
+                var mark = "$firstNumber - $lastNumber"
 
                 val category = Category(catid,
                     cursor.getString(cursor.getColumnIndex("title")),
@@ -211,7 +213,7 @@ class DBHelper(private val context: Context) {
     }
 
     fun getCategoryCount(): Int {
-        val countQuery = "SELECT  * FROM " + TBL_CATEGORY
+        val countQuery = "SELECT  * FROM $TBL_CATEGORY"
         val db = this.openDatabase()
         val cursor = db.rawQuery(countQuery, null)
 
@@ -222,6 +224,7 @@ class DBHelper(private val context: Context) {
         return count
     }
 
+    @SuppressLint("Range")
     fun getDhammapada(id: Int): Dhamma? {
 
         val db = this.openDatabase()
@@ -256,6 +259,7 @@ class DBHelper(private val context: Context) {
         return null
     }
 
+    @SuppressLint("Range")
     fun getAllDhammaByCategory(category_id : Int): List<Dhamma> {
         val lstData = ArrayList<Dhamma>()
 
@@ -292,7 +296,7 @@ class DBHelper(private val context: Context) {
     }
 
     fun getDhammaCount(category_id : Int): Int {
-        val countQuery = "SELECT  * FROM " + TBL_DHAMA + " where category_id=" + category_id
+        val countQuery = "SELECT  * FROM $TBL_DHAMA where category_id=$category_id"
         val db = this.openDatabase()
         val cursor = db.rawQuery(countQuery, null)
 

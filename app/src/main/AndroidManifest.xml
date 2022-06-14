@@ -11,10 +11,10 @@
         android:theme="@style/AppTheme"
         android:allowBackup="true">
 
-        <activity android:name=".activity.FavActivity" />
-        <activity android:name=".activity.ItemActivity" />
-        <activity android:name=".activity.MainActivity"  />
-        <activity android:name=".activity.SplashActivity"
+        <activity android:name=".activity.FavActivity" android:screenOrientation="portrait" />
+        <activity android:name=".activity.ItemActivity"  android:screenOrientation="portrait"  />
+        <activity android:name=".activity.MainActivity"  android:screenOrientation="portrait"   />
+        <activity android:name=".activity.SplashActivity"  android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

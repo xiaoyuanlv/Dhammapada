@@ -7,18 +7,60 @@
     tools:context=".activity.MainActivity"
    >
 
-    <androidx.appcompat.widget.AppCompatImageButton
-        android:id="@+id/imgbtnInfo"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+    <RelativeLayout
+        android:id="@+id/rlInfo"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@android:color/transparent"
-        android:src="@android:drawable/ic_menu_info_details" />
+        android:layout_margin="10dp"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/imgbtnInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_button" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/ftvInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/fasolid"
+            android:text="@string/info_font"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlTheme"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@id/rlInfo"
+        android:layout_margin="10dp"
+        >
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/imgbtnTheme"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_button" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/ftvTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/fasolid"
+            android:text="@string/star_font"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imgTitle"
@@ -137,33 +179,6 @@
         </RelativeLayout>
 
 
-        <RelativeLayout
-            android:id="@+id/rlTheme"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:layout_toEndOf="@id/rlFav"
-            android:layout_margin="10dp"
-            >
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/imgbtnTheme"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/rounded_button"
-                />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/ftvTheme"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:fontFamily="@font/fasolid"
-                android:text="@string/palette_font"
-                android:textColor="@android:color/white"
-                android:textSize="20sp" />
-
-        </RelativeLayout>
 
 
 

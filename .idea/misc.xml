@@ -4,12 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-hdpi/rounded_moon_button.xml" value="0.1995" />
+        <entry key="app/src/main/res/drawable-hdpi/rounded_white_button.xml" value="0.1995" />
+        <entry key="app/src/main/res/drawable/rounded_dark_button.xml" value="0.1995" />
         <entry key="app/src/main/res/layout-land/activity_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout-land/page_action_dialog.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_fav.xml" value="0.11656768266167378" />
         <entry key="app/src/main/res/layout/activity_item.xml" value="0.299942721349959" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1721014492753623" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1721014492753623" />
         <entry key="app/src/main/res/layout/app_info_dialog.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/bottomsheet_page.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/fragment_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_card.xml" value="0.1721014492753623" />
         <entry key="app/src/main/res/layout/item_category.xml" value="0.1721014492753623" />
@@ -19,7 +24,7 @@
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android API 32 Platform" project-jdk-type="Android SDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="Android API 32 Platform" project-jdk-type="Android SDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

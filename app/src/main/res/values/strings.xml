@@ -17,5 +17,7 @@
     <string name="book_font">\uf02d</string>
     <string name="bookmark_font">\uf02e</string>
     <string name="share_font">\uf1e0</string>
+    <string name="info_font">\uf05a</string>
+    <string name="darklight_font">\uf53f</string>
     <string name="palette_font"></string>
 </resources>
