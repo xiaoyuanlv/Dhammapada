@@ -6,7 +6,7 @@ import java.util.*
 
 class SharePrefHelper {
 
-    var CURRENT_DB_VER = 4
+    var CURRENT_DB_VER = 5
     var DB_PREF_NAME = "DHAMMAPADA_SENLASY_DB_VERSION"
 
     fun DBVersion(context: Context) : Int {

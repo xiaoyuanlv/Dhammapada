@@ -7,8 +7,6 @@ import com.senlasy.dhammapada.model.Dhamma
 
 class ItemPagerAdapter(var lstDhamma: MutableList<Dhamma>, var context : FragmentActivity) : androidx.viewpager2.adapter.FragmentStateAdapter(context), StatefulAdapter {
 
-
-
     var isEn : Boolean = true
     var isMM : Boolean = false
     var isPali : Boolean = false

@@ -20,4 +20,5 @@
     <string name="info_font">\uf05a</string>
     <string name="darklight_font">\uf53f</string>
     <string name="palette_font"></string>
+    <string name="app_info"><![CDATA[The Dhammapada is a collection of sayings of the Buddha in verse form and one of the most widely read and best known Buddhist scriptures. The Dhammapada App With Pāḷi, English, Myanmar, Burmese: ပါဠိ Language. \n\n English version is translated from the Pali by Acharya Buddharakkhita. Access to Insight (BCBS Edition), 30 November 2013, http://www.accesstoinsight.org.]]></string>
 </resources>

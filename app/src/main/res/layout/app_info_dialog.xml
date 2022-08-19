@@ -4,18 +4,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="10dp"
     android:background="@android:color/transparent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:background="@android:color/transparent"
-       >
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:background="@android:color/transparent">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -43,43 +39,45 @@
                 />
 
 
-
             <LinearLayout
                 android:id="@+id/lnContentBody"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_below="@id/txtTitle"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="250dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="20dp"
-                    android:fontFamily="@font/roboto"
-                    android:textAlignment="center"
                     android:layout_gravity="center"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
                     android:lineSpacingExtra="10dp"
-                    android:textColor="@android:color/black"
-                    android:text="The Dhammapada is a collection of sayings of the Buddha in verse form and one of the most widely read and best known Buddhist scriptures. The Dhammapada App With Pāḷi, English, Myanmar, Burmese: ပါဠိ Language"
-                    />
+                    android:padding="10dp"
+                    android:scrollbars="vertical"
+                    android:text="@string/app_info"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:padding="10dp"
+                        android:layout_weight="1"
                         android:fontFamily="@font/impact"
-                        android:text="V 3.1"
-                        android:textSize="17sp"
-                        android:textColor="@android:color/black"
+                        android:padding="10dp"
+                        android:text="V 3.2"
                         android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="17sp"
+
                         />
 
 
@@ -88,38 +86,35 @@
             </LinearLayout>
 
 
-
-
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_below="@id/lnContentBody"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="1"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:gravity="center">
 
                     <Button
                         android:id="@+id/btnClose"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:text="OK"
-                        android:textColor="@android:color/black"
+                        android:layout_gravity="center"
                         android:background="@drawable/rounded_white_button"
                         android:fontFamily="@font/impact"
-                        android:layout_gravity="center"
-                        android:textSize="12sp"
-                        />
+                        android:text="OK"
+                        android:textColor="@android:color/black"
+                        android:textSize="12sp" />
 
                 </LinearLayout>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </RelativeLayout>
-    </LinearLayout>
+
 
 </LinearLayout>

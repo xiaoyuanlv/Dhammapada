@@ -216,12 +216,11 @@ class ItemActivity : AppCompatActivity(), ItemFrag.OnFragmentInteractionListener
 
     }
 
-
     private fun share(dhamma: Dhamma) {
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
 
-        var shareBody = ""
+        var shareBody = "";
 
         if(is_en){
             shareBody =
